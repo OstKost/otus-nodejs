@@ -34,7 +34,7 @@ const logTree = (tree) => {
       if (isLast) prefix += renderElement(1, '    ');
       if (depth) prefix += isLastItem ? '└──' : '├──';
 
-      const name = transformName(category.PRODUCT_TREE_ATTR_NAME)
+      const name = transformName(category.PRODUCT_TREE_ATTR_NAME);
       const counterChildren = category.children.length ? `(${category.children.length})` : '';
       const logText = `${prefix} ${name} ${counterChildren}`.trim();
       logs += `${logText}\n`;
