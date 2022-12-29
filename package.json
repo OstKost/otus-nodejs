@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "ls1-1": "node ./hw/ls1-1/index.js"
+    "ls1-1": "node ./hw/ls1-1/index.js",
+    "ls1-2": "node ./hw/ls1-2/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,10 +18,10 @@
     "url": "https://github.com/OstKost/otus-nodejs/issues"
   },
   "homepage": "https://github.com/OstKost/otus-nodejs#readme",
-  "dependencies": {
-    "yargs": "^17.6.2"
-  },
   "devDependencies": {
     "prettier": "^2.8.1"
+  },
+  "dependencies": {
+    "yargs": "^17.6.2"
   }
 }
