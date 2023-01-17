@@ -1,0 +1,27 @@
+{
+  "name": "otus-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "ls1-1": "node ./hw/ls1-1/index.js",
+    "ls1-2": "node ./hw/ls1-2/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OstKost/otus-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OstKost/otus-nodejs/issues"
+  },
+  "homepage": "https://github.com/OstKost/otus-nodejs#readme",
+  "devDependencies": {
+    "prettier": "^2.8.1"
+  },
+  "dependencies": {
+    "yargs": "^17.6.2"
+  }
+}
