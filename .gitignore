@@ -1,2 +1,5 @@
 node_modules
 .idea
+/coverage/
+/homework/lesson_4/numbers.txt
+/homework/lesson_4/chunks/
