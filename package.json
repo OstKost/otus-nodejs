@@ -7,8 +7,7 @@
   "scripts": {
     "lesson-1-1": "node --experimental-json-modules ./homework/lesson_1/part_1/index.js",
     "lesson-1-2": "node ./homework/lesson_1/part_2/index.js",
-    "create-big-file": "node --max-old-space-size=50 ./homework/lesson_4/createBigFile.js",
-    "parse-big-file": "node --max-old-space-size=50 ./homework/lesson_4/parseBigFile.js",
+    "lesson-4": "node --max-old-space-size=50 ./homework/lesson_4/index.js",
     "test-old": "jest --experimental-vm-modules --coverage",
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest --coverage"
   },
