@@ -1,0 +1,13 @@
+html
+    head
+        title= title
+        style
+            include pico.min.css
+    body
+        h1= header
+        each course in courses
+            article
+                header= course.title
+                p= course.description
+                a(href= '/courses/' + course._id) Перейти
+            hr
