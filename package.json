@@ -12,7 +12,9 @@
     "test-old": "jest --experimental-vm-modules --coverage",
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest --coverage",
     "mongo": "docker compose up -d",
-    "lesson_11": "nodemon ./homework/lesson_11/my-courses/server.js"
+    "lesson_11": "nodemon ./homework/lesson_11/my-courses/server.js",
+    "lesson_14": "nodemon ./homework/lesson_14/server.js",
+    "lesson_14_fe": "http-server ./homework/lesson_14/ -p 3007"
   },
   "repository": {
     "type": "git",
@@ -41,17 +43,18 @@
     "cli-progress": "^3.11.2",
     "cookie-parser": "~1.4.4",
     "crypto": "^1.0.1",
-    "debug": "~2.6.9",
     "dotenv": "^16.0.3",
     "express": "~4.16.1",
     "express-fileupload": "^1.4.0",
     "http-errors": "~1.6.3",
+    "http-server": "^14.1.1",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.2",
     "morgan": "~1.9.1",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.1",
     "pug": "^2.0.0-beta11",
+    "ws": "^8.12.1",
     "yargs": "^17.6.2"
   }
 }
