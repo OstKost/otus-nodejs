@@ -60,17 +60,20 @@ export async function seedOrders(users, products) {
 
   for await (const orderData of ordersData) {
     const randomProduct = products[Math.floor(Math.random() * products.length)];
-    const owner = await prisma.user.findUnique({ where: { id: randomProduct.ownerId } });
+    const owner = await prisma.user.findUnique({
+      where: { id: randomProduct.ownerId },
+    });
     let buyer;
     while (!buyer || owner.id === buyer?.id) {
       buyer = users[Math.floor(Math.random() * users.length)];
     }
 
+    const { id, ...restOrderData } = orderData;
     const order = await prisma.order.upsert({
       where: { productId: randomProduct.id },
       update: {},
       create: {
-        ...orderData,
+        ...restOrderData,
         productId: randomProduct.id,
         ownerId: owner.id,
         buyerId: buyer?.id,

@@ -32,7 +32,6 @@ export class ProductResolver {
   async createProduct(
     @Args('data') data: CreateProductInput,
   ): Promise<ProductPrisma> {
-    console.log('DEBUG:', 'product.resolver => data', data);
     return this.productService.create(data);
   }
 

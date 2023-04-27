@@ -102,11 +102,12 @@ export async function seedProducts(users: User[] = []): Promise<Product[]> {
     const owner = users[Math.floor(Math.random() * users.length)];
     const sold = Number(Math.random().toFixed(1)) > 0.7;
     const published = Number(Math.random().toFixed(1)) > 0.2;
+    const { id, ...restProductData } = productData;
     const product = await prisma.product.upsert({
-      where: { id: productData.id },
+      where: { id },
       update: {},
       create: {
-        ...productData,
+        ...restProductData,
         ownerId: owner.id,
         sold,
         published: sold || published,
