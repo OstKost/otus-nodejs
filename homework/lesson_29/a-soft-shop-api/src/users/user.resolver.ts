@@ -18,6 +18,10 @@ import { ProductService } from '../products/product.service';
 import { OrderService } from '../orders/order.service';
 import { Product } from '../products/product.model';
 import { Order } from '../orders/order.model';
+import { Loader } from 'nestjs-dataloader/dist';
+import { OrderLoader } from '../orders/order.loader';
+import DataLoader from 'dataloader';
+import { ProductLoader } from '../products/product.loader';
 
 @Resolver(() => User)
 export class UserResolver {
@@ -63,20 +67,32 @@ export class UserResolver {
   }
 
   @ResolveField(() => Product)
-  async products(@Parent() user) {
+  async products(
+    @Parent() user: UserPrisma,
+    @Loader(ProductLoader) productLoader: DataLoader<Product['id'], Product>,
+  ) {
     const { id } = user;
-    return this.productService.findAll({ ownerId: id });
+    const products = await this.productService.findAll({ ownerId: id });
+    return productLoader.loadMany(products.map(({ id }) => id));
   }
 
   @ResolveField(() => Order)
-  async sales(@Parent() user) {
+  async sales(
+    @Parent() user: UserPrisma,
+    @Loader(OrderLoader) orderLoader: DataLoader<Order['id'], Order>,
+  ) {
     const { id } = user;
-    return this.orderService.findAll({ ownerId: id });
+    const orders = await this.orderService.findAll({ ownerId: id });
+    return orderLoader.loadMany(orders.map(({ id }) => id));
   }
 
   @ResolveField(() => Order)
-  async purchases(@Parent() user) {
+  async purchases(
+    @Parent() user: UserPrisma,
+    @Loader(OrderLoader) orderLoader: DataLoader<Order['id'], Order>,
+  ) {
     const { id } = user;
-    return this.orderService.findAll({ buyerId: id });
+    const orders = await this.orderService.findAll({ buyerId: id });
+    return orderLoader.loadMany(orders.map(({ id }) => id));
   }
 }

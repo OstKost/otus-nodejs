@@ -15,6 +15,10 @@ import { User } from '../users/user.model';
 import { OrderService } from '../orders/order.service';
 import { UserService } from '../users/user.service';
 import { Order } from '../orders/order.model';
+import { Loader } from 'nestjs-dataloader/dist';
+import { UserLoader } from '../users/user.loader';
+import DataLoader from 'dataloader';
+import { OrderLoader } from '../orders/order.loader';
 
 @Resolver(() => Product)
 export class ProductResolver {
@@ -56,14 +60,20 @@ export class ProductResolver {
   }
 
   @ResolveField(() => Order)
-  async order(@Parent() product: ProductPrisma) {
+  async order(
+    @Parent() product: ProductPrisma,
+    @Loader(OrderLoader) orderLoader: DataLoader<Order['id'], Order>,
+  ) {
     const { orderId } = product;
-    return this.orderService.findOne(orderId);
+    return orderId ? orderLoader.load(orderId) : null;
   }
 
   @ResolveField(() => User)
-  async owner(@Parent() product: ProductPrisma) {
+  async owner(
+    @Parent() product: ProductPrisma,
+    @Loader(UserLoader) userLoader: DataLoader<User['id'], User>,
+  ) {
     const { ownerId } = product;
-    return this.userService.getUserById(ownerId);
+    return userLoader.load(ownerId);
   }
 }

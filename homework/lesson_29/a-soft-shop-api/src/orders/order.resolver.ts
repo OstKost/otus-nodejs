@@ -12,17 +12,15 @@ import { UpdateOrderInput } from './dto/update-order.input';
 import { Order } from './order.model';
 import { Order as OrderPrisma } from '@prisma/client';
 import { Product } from '../products/product.model';
-import { UserService } from '../users/user.service';
-import { ProductService } from '../products/product.service';
 import { User } from '../users/user.model';
+import { Loader } from 'nestjs-dataloader';
+import DataLoader from 'dataloader';
+import { ProductLoader } from '../products/product.loader';
+import { UserLoader } from '../users/user.loader';
 
 @Resolver(() => Order)
 export class OrderResolver {
-  constructor(
-    private orderService: OrderService,
-    private userService: UserService,
-    private productService: ProductService,
-  ) {}
+  constructor(private orderService: OrderService) {}
 
   @Mutation(() => Order, { name: 'createOrder' })
   async createOrder(
@@ -55,20 +53,29 @@ export class OrderResolver {
   }
 
   @ResolveField(() => Product)
-  async product(@Parent() order: OrderPrisma) {
-    const { id } = order;
-    return this.productService.findOne(id);
+  async product(
+    @Parent() order: OrderPrisma,
+    @Loader(ProductLoader) productLoader: DataLoader<Product['id'], Product>,
+  ) {
+    const { productId } = order;
+    return productLoader.load(productId);
   }
 
   @ResolveField(() => User)
-  async owner(@Parent() order: OrderPrisma) {
+  async owner(
+    @Parent() order: OrderPrisma,
+    @Loader(UserLoader) userLoader: DataLoader<User['id'], User>,
+  ) {
     const { ownerId } = order;
-    return this.userService.getUserById(ownerId);
+    return userLoader.load(ownerId);
   }
 
   @ResolveField(() => User)
-  async buyer(@Parent() order: OrderPrisma) {
+  async buyer(
+    @Parent() order: OrderPrisma,
+    @Loader(UserLoader) userLoader: DataLoader<User['id'], User>,
+  ) {
     const { buyerId } = order;
-    return this.userService.getUserById(buyerId);
+    return buyerId ? userLoader.load(buyerId) : null;
   }
 }
