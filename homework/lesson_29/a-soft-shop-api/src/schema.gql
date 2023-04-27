@@ -1,0 +1,130 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateOrderInput {
+  buyerId: Float!
+  ownerId: Float!
+  price: Float!
+  productId: Float!
+}
+
+input CreateProductInput {
+  content: String
+  orderId: Int
+  ownerId: Int!
+  price: Int!
+  published: Boolean! = false
+  sold: Boolean! = false
+  title: String!
+}
+
+input CreateUserInput {
+  email: String!
+  name: String!
+  password: String!
+  phone: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type LoginResult {
+  access_token: String!
+}
+
+type Mutation {
+  createOrder(data: CreateOrderInput!): Order!
+  createProduct(data: CreateProductInput!): Product!
+  createUser(data: CreateUserInput!): User!
+  deleteOrder(id: Float!): Order!
+  deleteProduct(id: Float!): Product!
+  deleteUser(id: Float!): User!
+  login(email: String!, password: String!): LoginResult!
+  updateOrder(data: UpdateOrderInput!, id: Float!): Order!
+  updateProduct(data: UpdateProductInput!, id: Float!): Product!
+  updateUser(data: UpdateUserInput!, id: Float!): User!
+}
+
+type Order {
+  buyer: User
+  buyerId: Float!
+  createdAt: DateTime!
+  id: ID!
+  owner: User
+  ownerId: Float!
+  price: Int!
+  product: Product!
+  productId: Float!
+  updatedAt: DateTime!
+}
+
+type Product {
+  content: String
+  id: ID!
+  order: Order
+  orderId: ID
+  owner: User!
+  ownerId: Float!
+  price: Int!
+  published: Boolean!
+  sold: Boolean!
+  title: String!
+}
+
+type Query {
+  me: User!
+  order(id: Float!): Order!
+  orders: [Order!]!
+  product(id: Float!): Product!
+  products: [Product!]!
+  user(id: Float!): User!
+  users: [User!]!
+}
+
+"""User roles"""
+enum Role {
+  ADMIN
+  USER
+}
+
+input UpdateOrderInput {
+  buyerId: Float
+  id: Float!
+  ownerId: Float
+  price: Float
+  productId: Float
+}
+
+input UpdateProductInput {
+  content: String
+  id: Int!
+  orderId: Int
+  ownerId: Int
+  price: Int
+  published: Boolean = false
+  sold: Boolean = false
+  title: String
+}
+
+input UpdateUserInput {
+  email: String
+  name: String
+  password: String
+  phone: String
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  name: String!
+  phone: String
+  products: [Product!]
+  purchases: [Order!]
+  role: Role!
+  sales: [Order!]
+  updatedAt: DateTime!
+}
