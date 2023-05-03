@@ -1,5 +1,9 @@
 {
   "version": 2,
+  "name": "otus-nodejs",
+  "env": {
+    "BRANCH": "lesson-32-vercel-deploy"
+  },
   "builds": [
     {
       "src": "src/main.ts",
