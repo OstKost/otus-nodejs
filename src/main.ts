@@ -9,7 +9,7 @@ async function bootstrap() {
     .setTitle('Airsoft-Shop')
     .setDescription('The Airsoft-Shop API description')
     .setVersion('0.1')
-    .build111();
+    .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
