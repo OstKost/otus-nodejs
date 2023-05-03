@@ -30,3 +30,29 @@
 Публикация Nest приложения на сервис Vercel
 
 ## Deploy to Vercel
+
+Удалось запустить REST api.  
+https://otus-nodejs-ju4q.vercel.app/
+
+Настройки на Vercel:
+- В конфиг Vercel добавлены env переменные (SECRET_KEY_JWT, DATABASE_URL, DIRECT_URL)
+- Указана основная ветка для публикаций (lesson-32-vercel-deploy-rest)
+- Указана директория, где находится сборка (dist)
+- Swagger как обычно не работает, нужно как то через раздачу статики делать
+- Проверил запросы через Postman - работают, пример запроса:
+
+      curl --location 'otus-nodejs-ju4q.vercel.app/auth/login' \
+      --header 'Content-Type: application/json' \
+      --header 'Authorization: Bearer {{token}}' \
+      --data-raw '{
+      "email": "preview@preview.com",
+      "password": "preview"
+      }'
+  
+    
+        curl --location 'otus-nodejs-ju4q.vercel.app/auth/profile' \
+      --header 'Authorization: Bearer {{token}}' \
+
+  
+      curl --location 'otus-nodejs-ju4q.vercel.app/auth/profile' \
+      --header 'Authorization: Bearer {{token}}' \
