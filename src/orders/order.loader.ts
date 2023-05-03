@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { NestDataLoader } from 'nestjs-dataloader';
 import { PrismaService } from '../prisma/prisma.service';
 import { Order } from '@prisma/client';
-import * as DataLoader from 'dataloader';
+import { default as DataLoader } from 'dataloader';
 
 @Injectable()
 export class OrderLoader implements NestDataLoader<number, Order> {
