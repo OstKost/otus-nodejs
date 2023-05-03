@@ -1,3 +1,7 @@
+## CI CD
+Описание процесса CI CD для данного приложения:
+<a href="/README-CI-CD.md" target="blank">README-CI-CD.md</a>
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
