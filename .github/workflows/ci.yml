@@ -2,7 +2,7 @@ name: Nest-CI
 
 on:
   push:
-    branches: [lesson-32-vercel-deploy]
+    branches: [lesson-32-vercel-deploy, lesson-32-vercel-deploy-rest]
 
 env:
   IMAGE_TAG: nestjs-api
