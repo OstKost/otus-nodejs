@@ -1,10 +1,4 @@
-import {
-  ObjectType,
-  Field,
-  ID,
-  registerEnumType,
-  ResolveField,
-} from '@nestjs/graphql';
+import { ObjectType, Field, ID, registerEnumType } from '@nestjs/graphql';
 import { User as UserPrisma } from '@prisma/client';
 import { Order } from '../orders/order.model';
 import { Product } from '../products/product.model';
