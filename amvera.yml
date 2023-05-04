@@ -5,7 +5,7 @@ meta:
     version: 18
 
 build:
-  additionalCommands: npm run build
+  additionalCommands: DATABASE_URL=postgres://OstKost:Gqh6mCeBE9tT@ep-holy-leaf-181905-pooler.eu-central-1.aws.neon.tech/neondb?pgbouncer=true&connect_timeout=10 npm run build
   artifacts:
     "dist/*": /dist
 
