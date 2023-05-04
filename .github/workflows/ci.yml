@@ -1,0 +1,28 @@
+name: Nest-CI
+
+on:
+  push:
+    branches: [lesson-32-vercel-deploy, lesson-32-vercel-deploy-rest]
+
+env:
+  IMAGE_TAG: nestjs-api
+
+jobs:
+  test:
+    name: Check code, style, run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      - name: Build the Docker image
+        run: docker build -t $IMAGE_TAG --target=builder .
+
+      - name: Check code style with Prettier
+        run: docker run $IMAGE_TAG sh -c 'npm run format:check'
+
+      - name: Check code quality with ESLint
+        run: docker run $IMAGE_TAG sh -c 'npm run lint'
+
+      - name: Run tests
+        run: docker run $IMAGE_TAG sh -c 'npm run test'

@@ -1,11 +1,11 @@
 version: '3.8'
 services:
-  otus-mongo:
-    image: mongo
-    container_name: otus-mongo
-    ports:
-      - "27027:27017"
-    volumes:
-      - ./mongodb/:/data/db
-    logging:
-      driver: none
+    a-soft-api:
+        container_name: a-soft-api
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - '3000:3000'
+        env_file:
+            - .env
