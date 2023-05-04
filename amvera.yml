@@ -7,8 +7,8 @@ meta:
 build:
   additionalCommands: npm run build
   artifacts:
-    "*": /
+    "dist/*": /dist
 
 run:
-  command: npm run start
+  command: npm run start:prod
   containerPort: 3000
